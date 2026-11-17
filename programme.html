@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>WIBOCK · Programme</title>
+<meta name="theme-color" content="#060509">
+<script>try{if(sessionStorage.getItem("wbvt")){document.documentElement.classList.add("vt");sessionStorage.removeItem("wbvt")}}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Saira:ital,wght@1,700;1,800&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body id="top">
+
+<header class="nav">
+  <a class="brand" href="index.html" aria-label="WIBOCK"><img src="assets/img/logo-white.png" alt="WIBOCK"></a>
+  <nav class="nav-links"><a href="index.html">Coachs</a><a href="marketplace.html" aria-current="page">Marketplace</a></nav>
+  <div class="nav-right">
+    <a class="btn sm" href="index.html#rejoindre">Je suis coach</a>
+    <button class="burger" aria-label="Menu" aria-expanded="false"><svg viewBox="0 0 18 18" fill="currentColor"><rect x="1" y="1" width="6" height="6" rx="1.5"/><rect x="11" y="1" width="6" height="6" rx="1.5"/><rect x="1" y="11" width="6" height="6" rx="1.5"/><rect x="11" y="11" width="6" height="6" rx="1.5"/></svg></button>
+  </div>
+</header>
+<div class="menu">
+  <a class="big d" href="index.html">Coachs<span>01</span></a>
+  <a class="big d" href="marketplace.html">Marketplace<span>02</span></a>
+  <a class="btn violet" href="index.html#rejoindre">Créer mon espace coach</a>
+</div>
+
+<section class="p-hero" id="hero">
+  <div class="cv" id="cover"></div>
+  <div class="wrap">
+    <a class="crumb" href="marketplace.html"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 8H3M7 4L3 8l4 4"/></svg>Marketplace</a>
+    <h1 class="d" id="title"></h1>
+    <div class="who" id="who"></div>
+    <div class="p-stats rv" id="stats"></div>
+  </div>
+</section>
+
+<main class="wrap">
+  <section class="p-sec">
+    <span class="tag">Structure</span>
+    <h2 class="d h-m" data-split>Construit <span class="v">en cycles</span></h2>
+    <div class="cycles" id="cycles"></div>
+  </section>
+
+  <section class="p-sec">
+    <span class="tag">Une semaine type</span>
+    <h2 class="d h-m" data-split>Ce qu'ils <span class="v">reçoivent</span></h2>
+    <div class="day-grid">
+      <div class="rv">
+        <div class="week-days" id="days"></div>
+        <div class="day-panel" id="panel"></div>
+      </div>
+      <div class="mini-phone rv"><img src="assets/img/app-superset.jpg" alt="Un bloc superset dans l'app WIBOCK" loading="lazy"></div>
+    </div>
+  </section>
+
+  <section class="p-sec bio">
+    <span class="tag">Le coach</span>
+    <p class="q" id="quote" data-in></p>
+    <p id="role"></p>
+  </section>
+</main>
+
+<section class="shelf">
+  <div class="wrap head"><div><span class="tag">À découvrir</span><h2 class="d h-m" style="margin:10px 0 0" data-split>Autres programmes</h2></div></div>
+  <div class="rail" id="rail"></div>
+</section>
+
+<footer class="footer" style="padding-bottom:120px">
+  <span>© 2026 WIBOCK</span>
+  <nav><a href="index.html">Coachs</a><a href="marketplace.html">Marketplace</a><a href="#top">Haut de page</a></nav>
+</footer>
+
+<div class="buybar" id="buy"></div>
+
+<script src="js/data.js"></script>
+<script>
+(function () {
+  var id = new URLSearchParams(location.search).get("id");
+  var p = WB.byId(id);
+  document.title = "WIBOCK · " + p.title;
+  document.getElementById("cover").innerHTML = WB.cover(p, { k: "hero" });
+  document.getElementById("title").innerHTML = p.title;
+  document.getElementById("who").innerHTML = '<span class="av" ' + WB.avatar(p) + '>' + p.ini + '</span><span><b>' + p.coach + '</b><span>' + p.sport + ' · ' + p.level + '</span></span>';
+  document.getElementById("stats").innerHTML =
+    '<div><b>' + (p.weeks ? p.weeks : "∞") + '</b><span>' + (p.weeks ? "semaines" : "en continu") + '</span></div>' +
+    '<div><b>' + p.perWeek + '</b><span>séances / semaine</span></div>' +
+    '<div><b>' + p.athletes + '</b><span>athlètes</span></div>' +
+    '<div><b>' + p.price + ' €</b><span>/ ' + p.unit + '</span></div>';
+
+  /* cycles */
+  var names = ["Fondations", "Développement", "Intensification", "Affûtage"];
+  var tints = ["#4fc3e8", "#7b4bf6", "#e64bd8", "#f4f2f8"];
+  var weeks = p.weeks || 16;
+  var split = weeks <= 8 ? [3, 3, 2] : weeks <= 12 ? [4, 4, 3, 1] : [4, 5, 4, 3];
+  var total = split.reduce(function (a, b) { return a + b; }, 0);
+  split = split.map(function (w) { return Math.max(1, Math.round(w * weeks / total)); });
+  var html = "", wk = 1;
+  split.forEach(function (n, c) {
+    var bars = "";
+    for (var i = 0; i < n; i++) bars += '<i style="--i:' + i + ';--c:' + tints[c] + ';--o:' + (0.45 + 0.55 * ((i + 1) / n)) + '"></i>';
+    html += '<div class="cycle rv"><div class="t"><b>' + names[c] + '</b><span>S' + wk + (n > 1 ? " à S" + (wk + n - 1) : "") + '</span></div><div class="weeks">' + bars + "</div></div>";
+    wk += n;
+  });
+  if (!p.weeks) html += '<p style="color:var(--mute);font-size:14px;margin:6px 0 0">Abonnement : les cycles se renouvellent chaque mois.</p>';
+  document.getElementById("cycles").innerHTML = html;
+
+  /* semaine type */
+  var ic = {
+    bars: '<svg viewBox="0 0 20 20" fill="#c9b4ff"><rect x="3" y="4" width="3.2" height="12" rx="1.6"/><rect x="8.4" y="4" width="3.2" height="12" rx="1.6"/><rect x="13.8" y="4" width="3.2" height="12" rx="1.6"/></svg>',
+    eq: '<svg viewBox="0 0 20 20" fill="#c9b4ff"><rect x="3" y="6" width="3.2" height="10" rx="1.6"/><rect x="8.4" y="3" width="3.2" height="13" rx="1.6"/><rect x="13.8" y="7" width="3.2" height="9" rx="1.6"/></svg>',
+    ok: '<svg viewBox="0 0 20 20" fill="none" stroke="#fff" stroke-width="2.4"><path d="M5 10.5l3.2 3.2L15 6.5"/></svg>'
+  };
+  var D = [
+    ["Lun", 16, "Force", [["STRAIGHT SET", "Back Squat", "5 séries · 1 exercice", "bars"], ["SUPERSET", "Chaîne postérieure", "3 tours · 4 exercices", "eq"], ["EMOM", "EMOM 10 min Gainage", "10 intervalles × 1 min · 2 exercices", "ok"]]],
+    ["Mar", 17, "Mobility · Prehab", [["STRAIGHT SET", "Cohérence cardiaque", "1 série · 1 exercice", "bars"], ["SUPERSET", "Hips / Spinal Mobility", "1 tour · 17 exercices", "eq"], ["EMOM", "EMOM 12 min Prehab", "12 intervalles × 1 min · 3 exercices", "ok"]]],
+    ["Mer", 18, "Conditioning", [["INTERVAL", "30 / 30 Ski Erg", "10 rounds · 1 exercice", "eq"], ["FOR TIME", "Chipper 400", "1 tour · 6 exercices", "bars"]]],
+    ["Jeu", 19, "Repos actif", [["STRAIGHT SET", "Marche + respiration", "1 série · 2 exercices", "bars"]]],
+    ["Ven", 20, "Puissance", [["SUPERSET", "Pré-activation", "2 tours · 3 exercices", "eq"], ["STRAIGHT SET", "Power Clean", "6 séries · 1 exercice", "bars"], ["AMRAP", "AMRAP 8 min", "3 exercices", "ok"]]],
+    ["Sam", 21, "Long", [["INTERVAL", "Sortie longue Z2", "1 bloc · 70 min", "eq"]]],
+    ["Dim", 22, null, []]
+  ];
+  var days = document.getElementById("days"), panel = document.getElementById("panel");
+  days.innerHTML = D.map(function (d, i) { return '<button data-i="' + i + '"' + (d[2] ? "" : ' class="rest"') + '>' + d[0] + "<b>" + d[1] + "</b></button>"; }).join("");
+  function show(i) {
+    var d = D[i];
+    days.querySelectorAll("button").forEach(function (b, k) { b.classList.toggle("on", k === i); });
+    if (!d[2]) { panel.innerHTML = '<h3>Repos</h3><p style="color:var(--mute);margin:0">Rien de programmé. Le corps travaille aussi.</p>'; return; }
+    panel.innerHTML = "<h3>" + d[2] + "</h3>" + d[3].map(function (b, k) {
+      return '<div class="blk" style="--i:' + k + '"><span class="ic' + (b[3] === "ok" ? " done" : "") + '">' + ic[b[3]] + '</span><div class="bx"><span class="pill">' + b[0] + "</span><b>" + b[1] + "</b><span>" + b[2] + "</span></div></div>";
+    }).join("");
+  }
+  days.addEventListener("click", function (e) { var b = e.target.closest("button"); if (b) show(+b.getAttribute("data-i")); });
+  show(1);
+
+  /* coach */
+  document.getElementById("quote").textContent = "« " + p.pitch + " »";
+  document.getElementById("role").textContent = p.coach + ". " + p.role + ".";
+
+  /* autres */
+  document.getElementById("rail").innerHTML = WB.programs.filter(function (x) { return x.id !== p.id; }).map(function (x, i) { return WB.card(x, "o" + i); }).join("");
+
+  /* barre d'achat */
+  var buy = document.getElementById("buy");
+  buy.innerHTML = '<span class="price">' + p.price + ' €<small>/ ' + p.unit + '</small></span><a class="btn violet" href="#top">Rejoindre</a>';
+  var hero = document.getElementById("hero");
+  window.addEventListener("scroll", function () { buy.classList.toggle("on", hero.getBoundingClientRect().bottom < window.innerHeight * 0.5); }, { passive: true });
+})();
+</script>
+<script src="js/core.js"></script>
+</body>
+</html>

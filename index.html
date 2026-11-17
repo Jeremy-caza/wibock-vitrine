@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>WIBOCK · Pour les coachs</title>
+<meta name="description" content="Programme, vends et suis tes athlètes. La plateforme des coachs.">
+<meta name="theme-color" content="#060509">
+<script>try{if(sessionStorage.getItem("wbvt")){document.documentElement.classList.add("vt");sessionStorage.removeItem("wbvt")}}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Saira:ital,wght@1,700;1,800&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body id="top">
+
+<header class="nav">
+  <a class="brand" href="index.html" aria-label="WIBOCK"><img src="assets/img/logo-white.png" alt="WIBOCK"></a>
+  <nav class="nav-links"><a href="index.html" aria-current="page">Coachs</a><a href="marketplace.html">Marketplace</a></nav>
+  <div class="nav-right">
+    <a class="btn sm" href="#rejoindre">Rejoindre</a>
+    <button class="burger" aria-label="Menu" aria-expanded="false"><svg viewBox="0 0 18 18" fill="currentColor"><rect x="1" y="1" width="6" height="6" rx="1.5"/><rect x="11" y="1" width="6" height="6" rx="1.5"/><rect x="1" y="11" width="6" height="6" rx="1.5"/><rect x="11" y="11" width="6" height="6" rx="1.5"/></svg></button>
+  </div>
+</header>
+<div class="menu">
+  <a class="big d" href="index.html">Coachs<span>01</span></a>
+  <a class="big d" href="marketplace.html">Marketplace<span>02</span></a>
+  <a class="btn violet" href="#rejoindre">Créer mon espace coach</a>
+</div>
+
+<!-- 1. Le logo en 3D, puis la hiérarchie -->
+<section class="stage">
+  <div class="stage-pin">
+    <div class="stage-glow"></div>
+    <canvas aria-hidden="true"></canvas>
+    <div class="stage-fallback"><span data-mark="#7b4bf6"></span></div>
+    <div class="grain"></div>
+
+    <div class="hero-meta"><span>Pour les coachs</span><span>Web · iOS · Android</span></div>
+
+    <div class="hero-copy">
+      <h1 class="d" data-split>Ta méthode<br>dans leur <span class="v">poche</span></h1>
+      <div class="row">
+        <p class="lede">Programme, vends et suis tes athlètes depuis un seul endroit.</p>
+      </div>
+    </div>
+
+    <div class="levels">
+      <div class="level"><div class="num"><b>01</b><em></em><span class="tag">Programme</span></div><h2 class="d">Programme</h2><p>La saison entière, <strong>vendue en un lien.</strong></p></div>
+      <div class="level"><div class="num"><b>02</b><em></em><span class="tag">Cycle</span></div><h2 class="d">Cycle</h2><p>Des semaines construites <strong>avec une intention.</strong></p></div>
+      <div class="level"><div class="num"><b>03</b><em></em><span class="tag">Séance</span></div><h2 class="d">Séance</h2><p>Chaque matin, <strong>la journée est prête</strong> dans leur téléphone.</p></div>
+      <div class="level"><div class="num"><b>04</b><em></em><span class="tag">Bloc</span></div><h2 class="d">Bloc</h2><p>Straight set, superset, EMOM, AMRAP. <strong>Tous les formats du terrain.</strong></p></div>
+    </div>
+    <div class="ladder" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+  </div>
+</section>
+
+<!-- 2. Les formats -->
+<section class="formats">
+  <div class="wrap head">
+    <span class="tag">Le langage de l'entraînement</span>
+    <p class="rv">Les formats que tu utilises déjà. Rien à réinventer.</p>
+  </div>
+  <div class="track d"><span>EMOM</span><span>AMRAP</span><span>For time</span><span>Superset</span><span>Interval</span><span>Straight set</span></div>
+  <div class="track b d"><span>Cycle</span><span>Tempo</span><span>RPE</span><span>Prehab</span><span>Wellness</span><span>Template</span></div>
+</section>
+
+<!-- 3. Côté athlète : le téléphone en 3D -->
+<section class="athlete" id="athlete">
+  <div class="athlete-pin">
+    <div class="athlete-copy">
+      <span class="tag">Côté athlète</span>
+      <div class="swap">
+        <h2 class="d h-l" data-state="0">Leur journée<br>déjà <span class="v">écrite</span></h2>
+        <h2 class="d h-l off" data-state="1">Chaque bloc<br><span class="v">expliqué</span></h2>
+      </div>
+    </div>
+    <div class="scene">
+      <div class="shadow-floor"></div>
+      <div class="rig">
+        <div class="phone">
+          <div class="back"><span class="cam"></span><span data-mark="#ffffff" data-hole="#3a1a78"></span></div>
+          <div class="slab" style="transform:translateZ(-6px)"></div>
+          <div class="slab" style="transform:translateZ(-3px)"></div>
+          <div class="slab" style="transform:translateZ(0)"></div>
+          <div class="slab" style="transform:translateZ(3px)"></div>
+          <div class="slab" style="transform:translateZ(6px)"></div>
+          <div class="face">
+            <span class="island"></span>
+            <img src="assets/img/app-today.jpg" alt="Écran du jour dans l'app WIBOCK" data-screen="0">
+            <img class="off" src="assets/img/app-superset.jpg" alt="Détail d'un superset dans l'app WIBOCK" data-screen="1">
+          </div>
+        </div>
+        <div class="chip3d k1"><small>EMOM</small>12 min</div>
+        <div class="chip3d big k2">RPE <span class="v">8</span></div>
+        <div class="chip3d k3"><span class="dot"><svg viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2"><path d="M2.5 6.2l2.4 2.3 4.6-5"/></svg></span>Mark as done</div>
+        <div class="chip3d k4"><small>Superset</small>17 exos</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. Côté coach : la web app -->
+<section class="coach">
+  <div class="wrap intro">
+    <span class="tag">Côté coach</span>
+    <h2 class="d h-l" data-split>Tu construis<br>ils <span class="v">reçoivent</span></h2>
+    <p class="lede rv">Programmes, templates, athlètes, messages. Tout tient dans une web app. Plus de tableur.</p>
+  </div>
+  <div class="browser-wrap">
+    <div class="browser" id="browser">
+      <div class="bar"><i></i><i></i><i></i><span></span></div>
+      <div class="screen"><img src="assets/img/webapp-programmes.jpg" alt="La web app coach WIBOCK, page Programmes" loading="lazy"></div>
+    </div>
+  </div>
+  <div class="chips rv">
+    <span><b>01</b>Programmes</span><span><b>02</b>Templates</span><span><b>03</b>Exercices</span><span><b>04</b>Athlètes</span><span><b>05</b>Messages</span><span><b>06</b>Analyse data</span>
+  </div>
+</section>
+
+<!-- 5. Bibliothèque -->
+<section class="library">
+  <div class="wrap lib-grid">
+    <div>
+      <div class="lib-num d rv">1200<sup>+</sup></div>
+      <p class="lede rv" style="margin-top:18px">Exercices prêts, avec vidéo. Et les tiens, en deux clics.</p>
+    </div>
+    <div class="lib-cols" id="libcols" aria-hidden="true"></div>
+  </div>
+</section>
+
+<!-- 6. Le modèle -->
+<section class="money">
+  <div class="wrap money-grid">
+    <div class="ring" id="ring">
+      <svg viewBox="0 0 200 200">
+        <circle class="c-base" cx="100" cy="100" r="88" fill="none" stroke-width="14"/>
+        <circle class="c-coach" cx="100" cy="100" r="88" fill="none" stroke-width="14" stroke-linecap="round"/>
+        <circle class="c-us" cx="100" cy="100" r="88" fill="none" stroke-width="14" stroke-linecap="round"/>
+      </svg>
+      <div class="mid"><b class="d">92<sup>%</sup></b><span class="tag">pour toi</span></div>
+      <span class="lab a">8 % wibock</span>
+    </div>
+    <div>
+      <span class="tag">Le modèle</span>
+      <h2 class="d h-l" data-split>On gagne quand <span class="v">tu gagnes</span></h2>
+      <p class="lede rv">Zéro abonnement, zéro frais d'entrée. 8 % sur chaque vente, c'est tout.</p>
+      <div class="calc rv">
+        <div class="r"><label for="ath">Athlètes abonnés</label><output id="athOut">40</output></div>
+        <input id="ath" type="range" min="1" max="300" value="40" aria-label="Nombre d'athlètes">
+        <div class="r"><label>Tu encaisses</label><output id="you">1 435 €</output></div>
+        <div class="r"><label>WIBOCK</label><output class="v" id="us">125 €</output></div>
+        <p class="note">Exemple : programme vendu 39 € par mois.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 7. Marketplace -->
+<section class="shelf">
+  <div class="wrap head">
+    <div><span class="tag">Marketplace</span><h2 class="d h-m" style="margin:10px 0 0" data-split>Leur méthode<br>en vitrine</h2></div>
+    <a class="btn sm" href="marketplace.html">Tout voir <svg class="arr" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+  </div>
+  <div class="rail" id="rail"></div>
+</section>
+
+<!-- 8. Fin -->
+<section class="finale" id="rejoindre">
+  <div class="wrap">
+    <span class="tag">Gratuit pour démarrer</span>
+    <h2 class="d h-xl" data-split>Ton espace <span class="v">t'attend</span></h2>
+    <a class="btn violet" href="#rejoindre">Créer mon espace coach <svg class="arr" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+    <div class="tiles" aria-hidden="true">
+      <div><span>Programmer<small>01</small></span></div>
+      <div><span>Vendre<small>02</small></span></div>
+      <div><span>Suivre<small>03</small></span></div>
+      <div><span>Encaisser<small>04</small></span></div>
+    </div>
+  </div>
+  <div class="wordmark rv"><img src="assets/img/logo-white.png" alt="WIBOCK" loading="lazy"></div>
+  <footer class="footer">
+    <span>© 2026 WIBOCK</span>
+    <nav><a href="index.html">Coachs</a><a href="marketplace.html">Marketplace</a><a href="#top">Haut de page</a></nav>
+  </footer>
+</section>
+
+<script src="assets/vendor/three.min.js"></script>
+<script src="js/data.js"></script>
+<script src="js/core.js"></script>
+<script src="js/hero3d.js"></script>
+<script src="js/home.js"></script>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>WIBOCK · Marketplace</title>
+<meta name="description" content="Les programmes des coachs WIBOCK.">
+<meta name="theme-color" content="#060509">
+<script>try{if(sessionStorage.getItem("wbvt")){document.documentElement.classList.add("vt");sessionStorage.removeItem("wbvt")}}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Saira:ital,wght@1,700;1,800&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body id="top">
+
+<header class="nav">
+  <a class="brand" href="index.html" aria-label="WIBOCK"><img src="assets/img/logo-white.png" alt="WIBOCK"></a>
+  <nav class="nav-links"><a href="index.html">Coachs</a><a href="marketplace.html" aria-current="page">Marketplace</a></nav>
+  <div class="nav-right">
+    <a class="btn sm" href="index.html#rejoindre">Je suis coach</a>
+    <button class="burger" aria-label="Menu" aria-expanded="false"><svg viewBox="0 0 18 18" fill="currentColor"><rect x="1" y="1" width="6" height="6" rx="1.5"/><rect x="11" y="1" width="6" height="6" rx="1.5"/><rect x="1" y="11" width="6" height="6" rx="1.5"/><rect x="11" y="11" width="6" height="6" rx="1.5"/></svg></button>
+  </div>
+</header>
+<div class="menu">
+  <a class="big d" href="index.html">Coachs<span>01</span></a>
+  <a class="big d" href="marketplace.html">Marketplace<span>02</span></a>
+  <a class="btn violet" href="index.html#rejoindre">Créer mon espace coach</a>
+</div>
+
+<section class="mk-hero">
+  <div class="mk-orbit" id="orbit" aria-hidden="true"></div>
+  <div class="wrap" style="position:relative">
+    <span class="tag">Marketplace</span>
+    <h1 class="d h-xl" data-split>Trouve<br>ton <span class="v">coach</span></h1>
+    <p class="lede rv">Des programmes pensés par des coachs. Suivis dans l'app, séance par séance.</p>
+  </div>
+</section>
+
+<div class="filters"><div class="scroll" id="filters"></div></div>
+
+<main class="wrap">
+  <a class="feature rv" id="feature"></a>
+  <div class="grid" id="grid"></div>
+</main>
+
+<section class="coaches">
+  <div class="wrap"><span class="tag">Les coachs</span><h2 class="d h-m" style="margin:10px 0 22px" data-split>Ils programment ici</h2></div>
+  <div class="coach-row" id="coachRow"></div>
+</section>
+
+<section class="finale" style="padding-top:80px">
+  <div class="wrap">
+    <h2 class="d h-l" data-split>Ta place est <span class="v">ici</span></h2>
+    <a class="btn violet" href="index.html#rejoindre">Vendre mes programmes <svg class="arr" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+  </div>
+  <div class="wordmark rv"><img src="assets/img/logo-white.png" alt="WIBOCK" loading="lazy"></div>
+  <footer class="footer">
+    <span>© 2026 WIBOCK</span>
+    <nav><a href="index.html">Coachs</a><a href="marketplace.html">Marketplace</a><a href="#top">Haut de page</a></nav>
+  </footer>
+</section>
+
+<script src="js/data.js"></script>
+<script>
+(function () {
+  var P = WB.programs;
+
+  /* orbite des coachs */
+  var o = "", rings = ["a", "b", "c"];
+  rings.forEach(function (r, k) {
+    var items = "";
+    for (var j = 0; j < 3; j++) { var p = P[(k * 3 + j) % P.length]; items += "<i " + WB.avatar(p) + ">" + p.ini + "</i>"; }
+    o += '<div class="o ' + r + '">' + items + "</div>";
+  });
+  document.getElementById("orbit").innerHTML = o;
+
+  /* programme mis en avant */
+  var f = P[0], fe = document.getElementById("feature");
+  fe.href = "programme.html?id=" + f.id;
+  fe.innerHTML = '<div class="cv">' + WB.cover(f, { k: "f" }) + '</div><div class="body">' +
+    '<span class="tag">À la une · ' + f.sport + '</span><h2 class="d">' + f.title + '</h2>' +
+    '<div class="who" style="display:flex;align-items:center;gap:10px;color:var(--mute);font-size:14px"><span class="av" ' + WB.avatar(f) + '>' + f.ini + '</span>' + f.coach + '</div>' +
+    '<p style="margin:0;color:#cfcbd8;font-size:17px">' + f.pitch + '</p>' +
+    '<div class="stats"><div><b>' + f.weeks + '</b><span>semaines</span></div><div><b>' + f.perWeek + '</b><span>séances / sem</span></div><div><b>' + f.athletes + '</b><span>athlètes</span></div></div>' +
+    '<div style="display:flex;align-items:center;justify-content:space-between;gap:12px"><span class="price">' + f.price + ' €<small>/ ' + f.unit + '</small></span><span class="btn violet">Voir le programme</span></div></div>';
+
+  /* grille + filtres */
+  var grid = document.getElementById("grid");
+  grid.innerHTML = P.slice(1).map(function (p, i) { return WB.card(p, "g" + i); }).join("");
+  var fl = document.getElementById("filters");
+  fl.innerHTML = WB.cats.map(function (c, i) { return '<button data-c="' + c[0] + '"' + (i ? "" : ' class="on"') + ">" + c[1] + "</button>"; }).join("");
+  fl.addEventListener("click", function (e) {
+    var b = e.target.closest("button"); if (!b) return;
+    fl.querySelectorAll("button").forEach(function (x) { x.classList.toggle("on", x === b); });
+    var c = b.getAttribute("data-c");
+    fe.style.display = (c === "all" || c === f.cat) ? "" : "none";
+    grid.querySelectorAll(".card").forEach(function (card) {
+      var show = c === "all" || card.getAttribute("data-cat") === c;
+      card.classList.toggle("hidden", !show);
+      if (show) card.classList.add("in");
+    });
+  });
+
+  /* coachs */
+  document.getElementById("coachRow").innerHTML = P.map(function (p) {
+    return '<a class="coach-pill" href="programme.html?id=' + p.id + '"><span class="av" ' + WB.avatar(p) + '>' + p.ini + '</span><span><b>' + p.coach + '</b><span>' + p.sport + '</span></span></a>';
+  }).join("");
+})();
+</script>
+<script src="js/core.js"></script>
+</body>
+</html>
